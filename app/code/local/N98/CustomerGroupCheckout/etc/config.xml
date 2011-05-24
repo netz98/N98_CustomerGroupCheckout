@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category   Netz98
+ * @package    Netz98_CustomerGroupCheckout
+ */
+ -->
+<config>
+    <modules>
+        <Netz98_CustomerGroupCheckout>
+            <version>1.0.0</version>
+        </Netz98_CustomerGroupCheckout>
+    </modules>
+    <global>
+        <blocks>
+            <Netz98_CustomerGroupCheckout>
+                <class>Netz98_CustomerGroupCheckout_Block</class>
+            </Netz98_CustomerGroupCheckout>
+            <adminhtml>
+                <rewrite>
+                    <system_config_form>Netz98_CustomerGroupCheckout_Block_Adminhtml_System_Config_Form</system_config_form>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    	<models>
+		    <Netz98_CustomerGroupCheckout>
+		        <class>Netz98_CustomerGroupCheckout_Model</class>
+		    </Netz98_CustomerGroupCheckout>
+            <shipping>
+                <rewrite>
+                    <shipping>Netz98_CustomerGroupCheckout_Model_Shipping_Shipping</shipping>
+                </rewrite>
+            </shipping>
+        </models>
+    </global>
+    <frontend>
+        <events>
+            <payment_method_is_active>
+                <observers>
+                    <customer_group_check>
+                        <class>Netz98_CustomerGroupCheckout/payment_observer</class>
+                        <method>methodIsAvailable</method>
+                    </customer_group_check>
+                </observers>
+            </payment_method_is_active>
+        </events>
+    </frontend>
+</config>
