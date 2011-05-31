@@ -64,7 +64,9 @@ class N98_CustomerGroupCheckout_Model_Payment_Observer
         if (!empty($customerGroupConfig)) {
             $methodCustomerGroups = explode(',', $customerGroupConfig);
             if (count($methodCustomerGroups) > 0) {
-                $result->isAvailable = in_array($customer->getGroupId(), $methodCustomerGroups);
+                if (!in_array($customer->getGroupId(), $methodCustomerGroups)) {
+                    $result->isAvailable = false;
+                }
             }
         }
         return true;

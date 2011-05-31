@@ -74,7 +74,9 @@ class N98_CustomerGroupCheckout_Model_Shipping_Shipping
         if (!empty($carrierCustomerGroupConfig)) {
             $carrierCustomerGroups = explode(',', $carrierCustomerGroupConfig);
             if (count($carrierCustomerGroups) > 0) {
-                return in_array($customer->getGroupId(), $carrierCustomerGroups);
+                if (!in_array($customer->getGroupId(), $carrierCustomerGroups)) {
+                    return false;
+                }
             }
         }
 
