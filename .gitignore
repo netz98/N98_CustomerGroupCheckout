@@ -1,0 +1,17 @@
+# netbeans files
+catalog.xml
+nbproject
+
+# Eclipse files
+.settings
+.project
+.buildpath
+
+# Other versioning tools
+.svn
+
+# Webserver config
+.htaccess
+
+# Backup files
+.bak
