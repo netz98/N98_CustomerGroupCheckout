@@ -13,22 +13,22 @@
     </modules>
     <global>
         <blocks>
-            <Netz98_CustomerGroupCheckout>
-                <class>Netz98_CustomerGroupCheckout_Block</class>
-            </Netz98_CustomerGroupCheckout>
+            <n98_customergroupcheckout>
+                <class>N98_CustomerGroupCheckout_Block</class>
+            </n98_customergroupcheckout>
             <adminhtml>
                 <rewrite>
-                    <system_config_form>Netz98_CustomerGroupCheckout_Block_Adminhtml_System_Config_Form</system_config_form>
+                    <system_config_form>N98_CustomerGroupCheckout_Block_Adminhtml_System_Config_Form</system_config_form>
                 </rewrite>
             </adminhtml>
         </blocks>
-    	<models>
-		    <Netz98_CustomerGroupCheckout>
-		        <class>Netz98_CustomerGroupCheckout_Model</class>
-		    </Netz98_CustomerGroupCheckout>
+        <models>
+            <n98_customergroupcheckout>
+                <class>N98_CustomerGroupCheckout_Model</class>
+            </n98_customergroupcheckout>
             <shipping>
                 <rewrite>
-                    <shipping>Netz98_CustomerGroupCheckout_Model_Shipping_Shipping</shipping>
+                    <shipping>N98_CustomerGroupCheckout_Model_Shipping_Shipping</shipping>
                 </rewrite>
             </shipping>
         </models>
@@ -38,7 +38,7 @@
             <payment_method_is_active>
                 <observers>
                     <customer_group_check>
-                        <class>Netz98_CustomerGroupCheckout/payment_observer</class>
+                        <class>n98_customergroupcheckout/payment_observer</class>
                         <method>methodIsAvailable</method>
                     </customer_group_check>
                 </observers>
