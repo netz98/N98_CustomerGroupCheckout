@@ -46,7 +46,7 @@ class N98_CustomerGroupCheckout_Model_Shipping_Shipping
     /**
      * @param string $carrierCode
      * @param Varien_Object $request
-     * @return Netz98_CustomerGroupCheckout_Model_Shipping_Shipping
+     * @return N98_CustomerGroupCheckout_Model_Shipping_Shipping
      */
     public function collectCarrierRates($carrierCode, $request)
     {
