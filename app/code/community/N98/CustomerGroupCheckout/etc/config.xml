@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!--
 /**
- * @category   Netz98
- * @package    Netz98_CustomerGroupCheckout
+ * @category   N98
+ * @package    N98_CustomerGroupCheckout
  */
  -->
 <config>
     <modules>
-        <Netz98_CustomerGroupCheckout>
+        <N98_CustomerGroupCheckout>
             <version>1.0.1</version>
-        </Netz98_CustomerGroupCheckout>
+        </N98_CustomerGroupCheckout>
     </modules>
     <global>
         <blocks>
