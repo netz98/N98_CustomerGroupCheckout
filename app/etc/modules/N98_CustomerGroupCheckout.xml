@@ -9,7 +9,7 @@
     <modules>
         <N98_CustomerGroupCheckout>
             <active>true</active>
-            <codePool>comunity</codePool>
+            <codePool>community</codePool>
             <depends>
                 <Mage_Adminhtml />
             </depends>
