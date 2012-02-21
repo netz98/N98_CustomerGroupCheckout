@@ -57,7 +57,15 @@ class N98_CustomerGroupCheckout_Model_Payment_Observer
         $customer = Mage::helper('customer')->getCustomer();
         /* @var $customer Mage_Customer_Model_Customer */
 
-        $customerGroupConfig = $paymentMethodInstance->getConfigData(self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
+        if ($paymentMethodInstance instanceof Mage_Paypal_Model_Standard) {
+            $customerGroupConfig = Mage::getStoreConfig('paypal/wps/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
+        } elseif ($paymentMethodInstance instanceof Mage_Paypal_Model_Express) {
+            $customerGroupConfig = Mage::getStoreConfig('paypal/express/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
+        } elseif ($paymentMethodInstance instanceof Mage_GoogleCheckout_Model_Payment) {
+            $customerGroupConfig = Mage::getStoreConfig('google/checkout/' . self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
+        } else {
+            $customerGroupConfig = $paymentMethodInstance->getConfigData(self::XML_CUSTOMER_GROUP_CONFIG_FIELD);
+        }
         if (!empty($customerGroupConfig)) {
             $methodCustomerGroups = explode(',', $customerGroupConfig);
             if (count($methodCustomerGroups) > 0) {

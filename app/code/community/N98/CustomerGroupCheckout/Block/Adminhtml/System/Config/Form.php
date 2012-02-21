@@ -51,25 +51,65 @@ class N98_CustomerGroupCheckout_Block_Adminhtml_System_Config_Form
          * Check if we are in sales tab and sub-tab payment or shipping.
          * Then we create SimpleXMLElements for form init.
          */
-        if ($sections->tab == 'sales' && in_array($sections->label, array('Payment Methods', 'Shipping Methods'))) {
+        if ($sections->tab == 'sales' && in_array($sections->getName(), array('payment', 'carriers'))) {
+            //
+            // Standard payment and shipping sections
+            //
             foreach ($sections->groups as $group) {
                 foreach ($group as $subGroup) {
                     if (isset($subGroup->fields)) {
-                        $customerGroup = $subGroup->fields->addChild('available_for_customer_groups');
-                        $customerGroup->addAttribute('translate', 'label');
-                        /* @var $customerGroup Mage_Core_Model_Config_Element */
-                        $customerGroup->addChild('label', 'Customer Group');
-                        $customerGroup->addChild('frontend_type', 'multiselect');
-                        $customerGroup->addChild('source_model', 'adminhtml/system_config_source_customer_group');
-                        $customerGroup->addChild('sort_order', 1000);
-                        $customerGroup->addChild('show_in_default', 1);
-                        $customerGroup->addChild('show_in_website', 1);
-                        $customerGroup->addChild('show_in_store', 1);
+                        $this->_addFieldToConfigGroup($subGroup);
                     }
                 }
             }
-        }
+        } elseif ($sections->tab == 'sales' && $sections->getName() == 'paypal') {
+            ///
+            // PayPal
+            //
+            if (isset($sections->groups->express)) {
+                $this->_addFieldToConfigGroup($sections->groups->express);
+            }
+            if (isset($sections->groups->wps)) {
+                $this->_addFieldToConfigGroup($sections->groups->wps);
+            }
+        }/* elseif ($sections->tab == 'sales' && $sections->getName() == 'google') {
+            //
+            // Google checkout and shipping
+            //
+            if (isset($sections->groups->checkout)) {
+                $this->_addFieldToConfigGroup($sections->groups->checkout);
+            }
+            if (isset($sections->groups->checkout_shipping_merchant)) {
+                $this->_addFieldToConfigGroup($sections->groups->checkout_shipping_merchant);
+            }
+            if (isset($sections->groups->checkout_shipping_carrier)) {
+                $this->_addFieldToConfigGroup($sections->groups->checkout_shipping_carrier);
+            }
+            if (isset($sections->groups->checkout_shipping_flatrate)) {
+                $this->_addFieldToConfigGroup($sections->groups->checkout_shipping_flatrate);
+            }
+            if (isset($sections->groups->checkout_shipping_virtual)) {
+                $this->_addFieldToConfigGroup($sections->groups->checkout_shipping_virtual);
+            }
+        }*/
 
         return $this;
+    }
+
+    /**
+     * @param $subGroup
+     */
+    protected function _addFieldToConfigGroup($subGroup)
+    {
+        $customerGroup = $subGroup->fields->addChild('available_for_customer_groups');
+        $customerGroup->addAttribute('translate', 'label');
+        /* @var $customerGroup Mage_Core_Model_Config_Element */
+        $customerGroup->addChild('label', 'Customer Group');
+        $customerGroup->addChild('frontend_type', 'multiselect');
+        $customerGroup->addChild('source_model', 'adminhtml/system_config_source_customer_group');
+        $customerGroup->addChild('sort_order', 1000);
+        $customerGroup->addChild('show_in_default', 1);
+        $customerGroup->addChild('show_in_website', 1);
+        $customerGroup->addChild('show_in_store', 1);
     }
 }
