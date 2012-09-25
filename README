@@ -1,1 +1,3 @@
-This magento module limits the access to payment and shipping methods during checkout to special customer groups.
+This extension is deprecated. Please use our new extension which has functionality included:
+
+https://github.com/netz98/N98_CheckoutFilters
